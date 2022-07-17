@@ -6,28 +6,26 @@ import api from "./api";
 const App = () => {
   const [users, setUsers] = useState(api.users.fetchAll());
   const handleDelete = (userId) => {
-    setUsers((prevState) => prevState.filter((user) => user._id !== userId));
+    setUsers(users.filter((user) => user._id !== userId));
   };
   const handleToggleBookMark = (id) => {
-    const indexOfChangedBookMarkUser = users.findIndex(
-      (user) => user._id === id
+    setUsers(
+      users.map((user) => {
+        if (user._id === id) {
+          return { ...user, bookmark: !user.bookmark };
+        }
+        return user;
+      })
     );
-    users[indexOfChangedBookMarkUser].bookmark =
-      !users[indexOfChangedBookMarkUser].bookmark;
-    setUsers([...users]);
   };
-  if (!users.length) {
-    return (
-      <span className="badge bg-danger fs-4 m-1">Никто с тобой не тусанет</span>
-    );
-  }
+
   return (
     <div>
       <SearchStatus length={users.length} />
       <Users
-        users={users}
         onDelete={handleDelete}
         onToggleBookMark={handleToggleBookMark}
+        users={users}
       />
     </div>
   );

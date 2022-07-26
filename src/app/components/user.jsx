@@ -1,6 +1,7 @@
 import React from "react";
 import Qualitie from "./qualitie";
 import BookMark from "./bookmark";
+import PropTypes from "prop-types";
 const User = ({
     _id,
     name,
@@ -39,6 +40,20 @@ const User = ({
             </td>
         </tr>
     );
+};
+User.propTypes = {
+    _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    name: PropTypes.string.isRequired,
+    qualities: PropTypes.array.isRequired,
+    profession: PropTypes.object.isRequired,
+    completedMeetings: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
+    rate: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    bookmark: PropTypes.bool.isRequired,
+    onToggleBookMark: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired
 };
 
 export default User;

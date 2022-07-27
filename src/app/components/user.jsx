@@ -42,18 +42,15 @@ const User = ({
     );
 };
 User.propTypes = {
-    _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    qualities: PropTypes.array.isRequired,
+    qualities: PropTypes.array,
     profession: PropTypes.object.isRequired,
-    completedMeetings: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
-    rate: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    bookmark: PropTypes.bool.isRequired,
-    onToggleBookMark: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired
+    completedMeetings: PropTypes.number.isRequired,
+    rate: PropTypes.number.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    bookmark: PropTypes.bool,
+    onToggleBookMark: PropTypes.func.isRequired
 };
 
 export default User;

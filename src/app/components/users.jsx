@@ -3,17 +3,17 @@ import { paginate } from "../utils/paginate";
 import Pagination from "./pagination";
 import User from "./user";
 import PropTypes from "prop-types";
-const Users = ({ users, ...rest }) => {
-    const count = users.length;
-    const pageSize = 4;
+const Users = ({ users: allUsers, ...rest }) => {
     const [currentPage, setCurrentPage] = useState(1);
+    const count = allUsers.length;
+    const pageSize = 4;
+
     const handlePageChange = (pageIndex) => {
-        console.log("page: ", pageIndex);
         setCurrentPage(pageIndex);
+        console.log("page: ", pageIndex);
     };
 
-    const userCrop = paginate(users, currentPage, pageSize);
-
+    const userCrop = paginate(allUsers, currentPage, pageSize);
     return (
         <>
             {count > 0 && (
